@@ -1,0 +1,169 @@
+using System;
+
+namespace lab2
+{
+    public class Program
+    {
+        static double SafeDivision(double x, double y)
+        {
+            if (y == 0)
+            {
+                throw new DivideByZeroException();
+            }
+            return x / y;
+        }
+        public static void Main(string[] args)
+        {
+            {
+                Console.WriteLine("Упражнение 2.1:");
+                Console.Write("Введите своё имя (потом Enter): ");
+                string name = Console.ReadLine();
+                Console.WriteLine($"Доброе утро, {name} !");
+            }
+            Console.WriteLine("");
+            {
+                Console.WriteLine("Упражнение 2.2:");
+                Console.WriteLine("( после окончания введения необходимо нажать Enter ! )");
+                Console.Write("Введите первое число: ");
+                string a1 = Console.ReadLine();
+                double a;
+                bool flag1 = Double.TryParse(a1, out a);
+                if (!flag1)
+                {
+                    Console.Write("Введите первое число ЕЩЁ РАЗОК: ");
+                    a = Convert.ToDouble(Console.ReadLine());
+                }
+                else
+                {
+                    a = Convert.ToDouble(a1);
+                }
+                Console.Write("Введите второе число: ");
+                string b1 = Console.ReadLine();
+                double b;
+                flag1 = Double.TryParse(b1, out b);
+                if (!flag1)
+                {
+                    Console.Write("Введите второе число ЕЩЁ РАЗОК: ");
+                    b = Convert.ToDouble(Console.ReadLine());
+                }
+                else
+                {
+                    b = Convert.ToDouble(b1);
+                }
+                double result;
+                try
+                {
+                    result = SafeDivision(a, b);
+                    Console.WriteLine("{0} разделить на {1} = {2}", a, b, result);
+                }
+                catch (DivideByZeroException)
+                {
+                    Console.WriteLine("удивительно, но ничего не вышло .");
+                }
+            }
+            Console.WriteLine("");
+            {
+                Console.WriteLine("Домашнее задание 2.1:");
+                Console.Write("Введите букву: ");
+                char symbol = Console.ReadKey().KeyChar;
+                bool isNumeric = Char.IsDigit(symbol);
+                if (isNumeric)
+                {
+                    Console.Write("\nБУКВУ: ");
+                    symbol = Console.ReadKey().KeyChar;
+                    char letter = char.ToLower(symbol);
+                    char next_letter;
+                    if (letter == 'z' || letter == 'я')
+                    {
+                        next_letter = 'a';
+                    }
+                    else
+                    {
+                        next_letter = (char)(((int)letter) + 1);
+                    }
+                    Console.WriteLine($"\nСледующая буква: {next_letter}");
+                }
+                else
+                {
+                    char letter = char.ToLower(symbol);
+                    char next_letter;
+                    if (letter == 'z' || letter == 'я')
+                    {
+                        next_letter = 'a';
+                    }
+                    else
+                    {
+                        next_letter = (char)(((int)letter) + 1);
+                    }
+                    Console.WriteLine($"\nСледующая буква: {next_letter}");
+                }
+            }
+            Console.WriteLine("");
+            {
+                Console.WriteLine("Домашнее задание 2.2:");
+                Console.WriteLine("( после введения каждого коэффицента стоит нажимать Enter !! )");
+                Console.Write("Введите коэффицент a квадратного уравнения: ");
+                string a1 = Console.ReadLine();
+                float a;
+                bool flag1 = float.TryParse(a1, out a);
+                if (!flag1)
+                {
+                    Console.Write("Введите коэффицент a квадратного уравнения ЕЩЁ РАЗОК: ");
+                    a = Convert.ToSingle(Console.ReadLine());
+                }
+                else
+                {
+                    a = Convert.ToSingle(a1);
+                }        
+                Console.Write("Введите коэффицент b квадратного уравнения: ");
+                string b1 = Console.ReadLine();
+                float b;
+                bool flag2 = float.TryParse(b1, out b);
+                if (!flag2)
+                {
+                    Console.Write("Введите коэффицент b квадратного уравнения ЕЩЁ РАЗОК: ");
+                    b = Convert.ToSingle(Console.ReadLine());
+                }
+                else
+                {
+                    b = Convert.ToSingle(b1);
+                }
+                Console.Write("Введите коэффицент c квадратного уравнения: ");
+                string c1 = Console.ReadLine();
+                float c;
+                bool flag3 = float.TryParse(c1, out c);
+                if (!flag3)
+                {
+                    Console.Write("Введите коэффицент c квадратного уравнения ЕЩЁ РАЗОК: ");
+                    c = Convert.ToSingle(Console.ReadLine());
+                }
+                else
+                {
+                    c = Convert.ToSingle(c1);
+                }
+                double D = b * b - 4 * a * c;
+                double x1, x2;
+                a = a * 2;
+
+                if (D < 0)
+                {
+                    Console.WriteLine("корней нет ...");
+                }
+                else
+                {
+                    try
+                    {
+                        double T = Math.Sqrt(D);
+                        x1 = SafeDivision((-b + T), a);
+                        x2 = SafeDivision((-b - T), a);
+                    }
+                    catch (DivideByZeroException)
+                    {
+                        Console.WriteLine("... оставим это без комментариев .");
+                    }
+                }
+            }
+            Console.WriteLine("");
+        }
+    }
+}
