@@ -1,0 +1,61 @@
+using System;
+using static lab3.BankAccount;
+using static lab3.Worker;
+
+namespace lab3
+{
+    public enum Universities
+    {
+        KSU,
+        KAI,
+        KCTI
+    }
+    public struct Worker
+    {
+
+        public string name;
+        public Universities university;
+    }
+    public enum BankAccounts
+    {
+        Current = 10000,
+        Savings = 20000
+    }
+    public struct BankAccount
+    {
+
+        public string number;
+        public BankAccounts type;
+        public float balance;
+    }
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            {
+                Console.WriteLine("Упражнение 3.1:");
+                BankAccounts current = BankAccounts.Current;
+                BankAccounts savings = BankAccounts.Savings;
+                Console.WriteLine("{0} счёт: {1}\n{2} счёт: {3}", current, (int)current, savings, (int)savings);
+            }
+            Console.WriteLine("");
+            {
+                Console.WriteLine("Упражнение 3.2:");
+                BankAccount account = new BankAccount();
+                account.number = "12345678901234567890";
+                account.type = BankAccounts.Current;
+                account.balance = 30958.15f;
+                Console.WriteLine($"Номер счёта: {account.number}\nТип счёта: {account.type}\nБаланс: {account.balance}");
+            }
+            Console.WriteLine("");
+            {
+                Console.WriteLine("Домашнее задание 3.1:");
+                Worker teacher = new Worker();
+                teacher.name = "Надежда";
+                teacher.university = Universities.KAI;
+                Console.WriteLine($"Имя работника: {teacher.name}\nВУЗ: {teacher.university}");
+            }
+            Console.WriteLine("");
+        }
+    }
+}
